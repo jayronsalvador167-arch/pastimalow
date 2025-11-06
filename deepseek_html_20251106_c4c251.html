@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pastimallow - Delicious Marshmallow Treats</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Global Styles */
+        :root {
+            --pastel-pink: #ffd1dc;
+            --pastel-mint: #c1f0c1;
+            --cream: #fff8e7;
+            --white: #ffffff;
+            --soft-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--cream);
+            color: #5a5a5a;
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px 0;
+        }
+        
+        section {
+            padding: 60px 0;
+        }
+        
+        h1, h2, h3 {
+            color: #e67b9f;
+            margin-bottom: 20px;
+        }
+        
+        p {
+            margin-bottom: 15px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--pastel-pink);
+            color: #5a5a5a;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: bold;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: var(--soft-shadow);
+        }
+        
+        .btn:hover {
+            background-color: #ffb8c9;
+            transform: translateY(-3px);
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: var(--white);
+            box-shadow: var(--soft-shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            height: 60px;
+            width: auto;
+        }
+        
+        /* REPLACE THIS IMAGE WITH YOUR LOGO */
+        .logo-placeholder {
+            height: 60px;
+            width: 200px;
+            background-color: var(--pastel-pink);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            font-weight: bold;
+            color: #e67b9f;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 25px;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: #5a5a5a;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: #e67b9f;
+        }
+        
+        .mobile-menu {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--pastel-pink) 0%, var(--pastel-mint) 100%);
+            text-align: center;
+            padding: 100px 0;
+            border-radius: 0 0 30px 30px;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: #5a5a5a;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto 30px;
+            color: #5a5a5a;
+        }
+        
+        /* Menu Section */
+        .menu {
+            background-color: var(--white);
+            border-radius: 30px;
+            margin-top: -30px;
+            box-shadow: var(--soft-shadow);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .product-card {
+            background-color: var(--cream);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--soft-shadow);
+            transition: transform 0.3s;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .product-image {
+            width: 100%;
+            height: 200px;
+            background-color: var(--pastel-pink);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #e67b9f;
+            font-weight: bold;
+        }
+        
+        /* REPLACE THESE IMAGES WITH YOUR PRODUCT PHOTOS */
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .product-info {
+            padding: 20px;
+        }
+        
+        .product-name {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+        
+        .product-price {
+            font-weight: bold;
+            color: #e67b9f;
+            margin-bottom: 15px;
+        }
+        
+        .quantity-selector {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .quantity-btn {
+            background-color: var(--pastel-mint);
+            border: none;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        
+        .quantity-input {
+            width: 50px;
+            text-align: center;
+            margin: 0 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 5px;
+        }
+        
+        .add-to-cart {
+            width: 100%;
+            background-color: var(--pastel-pink);
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        
+        .add-to-cart:hover {
+            background-color: #ffb8c9;
+        }
+        
+        /* Cart Section */
+        .cart-section {
+            background-color: var(--pastel-mint);
+            border-radius: 30px;
+            padding: 40px;
+            margin-top: 40px;
+            text-align: center;
+        }
+        
+        .cart-total {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+        
+        /* About Section */
+        .about {
+            background-color: var(--white);
+            border-radius: 30px;
+            box-shadow: var(--soft-shadow);
+        }
+        
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+        
+        .about-text {
+            flex: 1;
+        }
+        
+        .about-image {
+            flex: 1;
+            height: 300px;
+            background-color: var(--pastel-pink);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #e67b9f;
+            font-weight: bold;
+        }
+        
+        /* REPLACE THIS IMAGE WITH YOUR ABOUT PHOTO */
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 15px;
+        }
+        
+        /* Contact Section */
+        .contact {
+            background-color: var(--pastel-pink);
+            border-radius: 30px;
+            box-shadow: var(--soft-shadow);
+            text-align: center;
+        }
+        
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .social-icon {
+            display: inline-block;
+            width: 60px;
+            height: 60px;
+            background-color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #e67b9f;
+            font-size: 24px;
+            text-decoration: none;
+            transition: all 0.3s;
+            box-shadow: var(--soft-shadow);
+        }
+        
+        .social-icon:hover {
+            transform: translateY(-5px);
+            background-color: var(--pastel-mint);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--white);
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 60px;
+            box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+            }
+            
+            .logo {
+                margin-bottom: 15px;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul li {
+                margin: 10px 0;
+            }
+            
+            .mobile-menu {
+                display: block;
+                position: absolute;
+                top: 20px;
+                right: 20px;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .about-image {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="container header-container">
+         <img src="logo.jpg" class="logo">
+
+            
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#menu">Menu</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+            
+            <div class="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <h1>Welcome to Pastimallow</h1>
+            <p>Indulge in our soft, fluffy, and delicious marshmallow treats in a variety of delightful flavors. Perfect for any occasion!</p>
+            <a href="#menu" class="btn">Browse Flavors</a>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section id="menu" class="menu">
+        <div class="container">
+            <h2 class="section-title">Our Flavors</h2>
+            <div class="products-grid">
+                <!-- Chocolate Pastimallow -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <!-- REPLACE THIS DIV WITH YOUR PRODUCT IMAGE -->
+                        <img src="chocolate-marshmallow.jpg">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Chocolate Pastimallow</h3>
+                        <p class="product-price">₱15 each</p>
+                        <div class="quantity-selector">
+                            <button class="quantity-btn minus" data-product="chocolate">-</button>
+                            <input type="number" class="quantity-input" id="chocolate-qty" value="0" min="0">
+                            <button class="quantity-btn plus" data-product="chocolate">+</button>
+                        </div>
+                        <button class="add-to-cart" data-product="chocolate" data-price="15">Add to Cart</button>
+                    </div>
+                </div>
+                
+                <!-- Strawberry Pastimallow -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <!-- REPLACE THIS DIV WITH YOUR PRODUCT IMAGE -->
+                        <img src="strawberry-marshmallow.jpg">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Strawberry Pastimallow</h3>
+                        <p class="product-price">₱15 each</p>
+                        <div class="quantity-selector">
+                            <button class="quantity-btn minus" data-product="strawberry">-</button>
+                            <input type="number" class="quantity-input" id="strawberry-qty" value="0" min="0">
+                            <button class="quantity-btn plus" data-product="strawberry">+</button>
+                        </div>
+                        <button class="add-to-cart" data-product="strawberry" data-price="15">Add to Cart</button>
+                    </div>
+                </div>
+                
+                <!-- Matcha Pastimallow -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <!-- REPLACE THIS DIV WITH YOUR PRODUCT IMAGE -->
+                        <img src="matcha-marshmallow.jpg">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Matcha Pastimallow</h3>
+                        <p class="product-price">₱15 each</p>
+                        <div class="quantity-selector">
+                            <button class="quantity-btn minus" data-product="matcha">-</button>
+                            <input type="number" class="quantity-input" id="matcha-qty" value="0" min="0">
+                            <button class="quantity-btn plus" data-product="matcha">+</button>
+                        </div>
+                        <button class="add-to-cart" data-product="matcha" data-price="15">Add to Cart</button>
+                    </div>
+                </div>
+                
+                <!-- Cookies & Cream Pastimallow -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <!-- REPLACE THIS DIV WITH YOUR PRODUCT IMAGE -->
+                        <img src="cookies-cream-marshmallow.jpg">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Cookies & Cream Pastimallow</h3>
+                        <p class="product-price">₱15 each</p>
+                        <div class="quantity-selector">
+                            <button class="quantity-btn minus" data-product="cookies-cream">-</button>
+                            <input type="number" class="quantity-input" id="cookies-cream-qty" value="0" min="0">
+                            <button class="quantity-btn plus" data-product="cookies-cream">+</button>
+                        </div>
+                        <button class="add-to-cart" data-product="cookies-cream" data-price="15">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Cart Section -->
+            <div class="cart-section">
+                <h2>Your Order</h2>
+                <p class="cart-total">Total: ₱<span id="total-price">0</span></p>
+                <button class="btn" id="checkout-btn">Checkout</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">Our Story</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Pastimallow was born from a passion for creating sweet moments and sharing joy through delicious treats. Our founder, a pastry chef with over 10 years of experience, wanted to reinvent the classic marshmallow by infusing it with unique flavors and a soft, melt-in-your-mouth texture.</p>
+                    <p>We carefully source our ingredients and craft each Pastimallow by hand to ensure the highest quality and most delightful experience. Our mission is to bring a little sweetness to your everyday life with our fluffy, flavorful marshmallows.</p>
+                    <p>Whether you're enjoying them with your morning coffee, as a dessert after dinner, or sharing them with friends, Pastimallows are the perfect treat for any occasion.</p>
+                </div>
+                <div class="about-image">
+                    <!-- REPLACE THIS DIV WITH YOUR ABOUT IMAGE -->
+                    <div>About Pastimallow Image</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Get in Touch</h2>
+            <p>Follow us on social media to stay updated with our latest flavors and promotions!</p>
+            <div class="social-icons">
+                <!-- REPLACE THESE LINKS WITH YOUR ACTUAL SOCIAL MEDIA PROFILES -->
+                <a href="https://www.facebook.com/profile.php?id=61582531743296" class="social-icon" target="_blank">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="https://www.instagram.com/pastimallow_treats/?hl=en" class="social-icon" target="_blank">
+                    <i class="fab fa-instagram"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 Pastimallow. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Cart functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const quantityInputs = document.querySelectorAll('.quantity-input');
+            const minusButtons = document.querySelectorAll('.quantity-btn.minus');
+            const plusButtons = document.querySelectorAll('.quantity-btn.plus');
+            const addToCartButtons = document.querySelectorAll('.add-to-cart');
+            const totalPriceElement = document.getElementById('total-price');
+            const checkoutButton = document.getElementById('checkout-btn');
+            
+            let cart = {
+                chocolate: 0,
+                strawberry: 0,
+                matcha: 0,
+                'cookies-cream': 0
+            };
+            
+            // Update quantity with minus button
+            minusButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const product = this.getAttribute('data-product');
+                    const input = document.getElementById(`${product}-qty`);
+                    if (parseInt(input.value) > 0) {
+                        input.value = parseInt(input.value) - 1;
+                        updateCart(product, parseInt(input.value));
+                    }
+                });
+            });
+            
+            // Update quantity with plus button
+            plusButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const product = this.getAttribute('data-product');
+                    const input = document.getElementById(`${product}-qty`);
+                    input.value = parseInt(input.value) + 1;
+                    updateCart(product, parseInt(input.value));
+                });
+            });
+            
+            // Update quantity when input changes manually
+            quantityInputs.forEach(input => {
+                input.addEventListener('change', function() {
+                    const product = this.id.replace('-qty', '');
+                    updateCart(product, parseInt(this.value));
+                });
+            });
+            
+            // Add to cart button
+            addToCartButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const product = this.getAttribute('data-product');
+                    const input = document.getElementById(`${product}-qty`);
+                    const quantity = parseInt(input.value);
+                    
+                    if (quantity > 0) {
+                        updateCart(product, quantity);
+                        alert(`Added ${quantity} ${product.charAt(0).toUpperCase() + product.slice(1)} Pastimallow(s) to cart!`);
+                    } else {
+                        alert('Please select at least 1 item to add to cart.');
+                    }
+                });
+            });
+            
+            // Update cart and calculate total
+            function updateCart(product, quantity) {
+                cart[product] = quantity;
+                calculateTotal();
+            }
+            
+            // Calculate total price
+            function calculateTotal() {
+                let total = 0;
+                for (const product in cart) {
+                    total += cart[product] * 15; // Each product costs ₱15
+                }
+                totalPriceElement.textContent = total;
+            }
+            
+            // Checkout button
+            checkoutButton.addEventListener('click', function() {
+                const total = parseInt(totalPriceElement.textContent);
+                if (total > 0) {
+                    alert(`Thank you for your order! Your total is ₱${total}. We'll contact you shortly to confirm your order details.`);
+                    // In a real implementation, you would process the payment here
+                } else {
+                    alert('Your cart is empty. Please add some items before checking out.');
+                }
+            });
+            
+            // Mobile menu toggle
+            const mobileMenu = document.querySelector('.mobile-menu');
+            const nav = document.querySelector('nav ul');
+            
+            mobileMenu.addEventListener('click', function() {
+                nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
+            });
+            
+            // Adjust navigation for mobile on resize
+            window.addEventListener('resize', function() {
+                if (window.innerWidth > 768) {
+                    nav.style.display = 'flex';
+                } else {
+                    nav.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
